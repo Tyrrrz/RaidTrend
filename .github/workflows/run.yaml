@@ -23,8 +23,14 @@ jobs:
       - name: Run script
         run: yarn start
 
-      - name: Upload output
+      - name: Upload raw data
         uses: actions/upload-artifact@v3
         with:
           name: output.json
           path: output.json
+
+      - name: Upload grouped data
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-grouped.json
+          path: output-grouped.json
