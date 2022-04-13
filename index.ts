@@ -1,6 +1,5 @@
 import { getMessages } from './telegram';
-import { mkdir, writeFile } from 'fs/promises';
-import { existsSync } from 'fs';
+import { writeFile } from 'fs/promises';
 
 interface Alert {
   area: string;
@@ -67,23 +66,8 @@ const main = async () => {
 
   console.log(`Processed ${alerts.length} alerts`);
 
-  const timestamp = new Date();
-
-  const timestampFormatted = [
-    timestamp.getUTCFullYear(),
-    timestamp.getUTCMonth() + 1,
-    timestamp.getUTCDate()
-  ].join('-');
-
-  if (!existsSync('./output')) {
-    await mkdir('./output');
-  }
-
-  await writeFile(`./output/${timestampFormatted}.json`, JSON.stringify(alerts, null, 2), {
-    flag: 'w'
-  });
-
-  console.log(`Saved data to ./output/${timestampFormatted}.json`);
+  await writeFile('output.json', JSON.stringify(alerts, null, 2));
+  console.log('Saved data to output.json');
 };
 
 main().catch((err) => console.error('Error', err));

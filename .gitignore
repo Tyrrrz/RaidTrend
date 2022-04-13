@@ -10,4 +10,4 @@ lerna-debug.log*
 *.tsbuildinfo
 
 # output
-output/
+output.json
