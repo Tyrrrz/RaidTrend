@@ -8,7 +8,7 @@
 
 > 🟢 **Project status**: active<sup>[[?]](https://github.com/Tyrrrz/.github/blob/master/docs/project-status.md)</sup>
 
-**RaidTrend** is a simple script that pulls historic air raid alert data for Ukrainian cities and regions from [`air_alert_ua` Telegram channel](https://t.me/air_alert_ua).
+**RaidTrend** is a simple project that pulls historic air raid alert data for Ukrainian cities and regions from [`air_alert_ua` Telegram channel](https://t.me/air_alert_ua).
 
 ## Snapshots
 
@@ -102,3 +102,7 @@ The format of data is as follows:
   }
 ]
 ```
+
+## Analysis
+
+The journal I use to analyze alert data: https://observablehq.com/@tyrrrz/raidtrend
