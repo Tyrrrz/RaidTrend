@@ -1,8 +1,22 @@
 import { getMessages } from './telegram';
 import { writeFile } from 'fs/promises';
+import { transliterate } from './translit';
+
+interface Alert {
+  area: string;
+  areaTranslit: string;
+  start: Date;
+  stop: Date;
+}
+
+interface AlertGroup {
+  area: string;
+  areaTranslit: string;
+  alerts: { start: Date; stop: Date }[];
+}
 
 const getAlerts = async () => {
-  const alerts = [];
+  const alerts: Alert[] = [];
   const areaAlertStarts = new Map<string, Date>();
 
   for await (const message of getMessages('air_alert_ua')) {
@@ -48,8 +62,9 @@ const getAlerts = async () => {
 
         areaAlertStarts.delete(area);
 
-        const alert = {
+        const alert: Alert = {
           area,
+          areaTranslit: transliterate(area),
           start,
           stop: message.timestamp
         };
@@ -72,13 +87,19 @@ const main = async () => {
   console.log('Saved data to output.json');
 
   // Save grouped data
-  const alertGroups = [...new Set(alerts.map((alert) => alert.area))]
+  const alertGroups: AlertGroup[] = [...new Set(alerts.map((alert) => alert.area))]
     .map((area) => {
       const alertsForArea = alerts
         .filter((alert) => alert.area === area)
         .map((alert) => ({ start: alert.start, stop: alert.stop }));
 
-      return { area, alerts: alertsForArea };
+      const group: AlertGroup = {
+        area,
+        areaTranslit: transliterate(area),
+        alerts: alertsForArea
+      };
+
+      return group;
     })
     .sort((a, b) => a.area.localeCompare(b.area));
 

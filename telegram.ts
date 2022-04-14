@@ -27,7 +27,8 @@ const parseMessages = (html: string) => {
       throw new Error('Could not parse message timestamp');
     }
 
-    const text = $($(el).find('.tgme_widget_message_text').html()?.replace(/<br>/g, '\n')).text();
+    const textRaw = $(el).find('.tgme_widget_message_text').html();
+    const text = textRaw && parseHTML(textRaw.replace(/<br>/g, '\n')).text();
     if (!text) {
       throw new Error('Could not parse message text');
     }
