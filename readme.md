@@ -10,6 +10,8 @@
 
 **RaidTrend** is a simple project that pulls historic air raid alert data for Ukrainian cities and regions from [`air_alert_ua` Telegram channel](https://t.me/air_alert_ua).
 
+You can find my analysis of the data [here](https://observablehq.com/@tyrrrz/raidtrend).
+
 ## Snapshots
 
 Data snapshots are generated nightly using GitHub Actions.
@@ -102,7 +104,3 @@ The format of data is as follows:
   }
 ]
 ```
-
-## Analysis
-
-The journal I use to analyze alert data: https://observablehq.com/@tyrrrz/raidtrend
