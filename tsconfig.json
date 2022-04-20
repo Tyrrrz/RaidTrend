@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "es5",
     "lib": [
-      "esnext"
+      "esnext",
+      // HACK: remove line below when @types/node adds support for native fetch in Node 18
+      "dom"
     ],
     "module": "commonjs",
     "moduleResolution": "node",

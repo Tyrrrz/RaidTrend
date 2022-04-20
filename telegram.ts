@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { load as parseHTML } from 'cheerio';
 
 // We are not using Telegram API because bots don't have access to
