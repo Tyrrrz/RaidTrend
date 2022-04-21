@@ -1,4 +1,5 @@
 import { load as parseHTML } from 'cheerio';
+import { delay } from './utils';
 
 // We are not using Telegram API because bots don't have access to
 // message history and user accounts are annoying to automate.
@@ -64,5 +65,8 @@ export const getMessages = async function* (channelName: string) {
       yield message;
       offset = message.id;
     }
+
+    // Avoid hitting rate limit
+    await delay(150);
   }
 };
